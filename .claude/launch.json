@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mentoria",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "C:\\Users\\ismat\\OneDrive\\Документы\\Claude 2.0\\mentoria-hub",
+      "port": 5173
+    }
+  ]
+}
