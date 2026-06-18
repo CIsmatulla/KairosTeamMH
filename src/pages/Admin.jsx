@@ -242,6 +242,10 @@ export default function Admin() {
 
       {/* Users list */}
       {tab === 'users' && (
+        <div className="space-y-3">
+          <div className="rounded-xl border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20 px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
+            Демо-данные — реальные пользователи доступны в Supabase Dashboard.
+          </div>
         <div className="card divide-y divide-slate-100 dark:divide-white/5">
           {MOCK_USERS.map((u) => (
             <div key={u.email} className="flex items-center gap-4 p-4">
@@ -258,6 +262,7 @@ export default function Admin() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       )}
     </div>

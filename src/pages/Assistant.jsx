@@ -35,7 +35,7 @@ function systemPrompt(user, courses, opps) {
 export default function Assistant() {
   const { user, courses, opportunities } = useApp()
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: `Привет, ${user.name || 'друг'}! Я Ментор ИИ. Помогу выбрать курсы и возможности, объясню тему или построю план. Спрашивай!` },
+    { role: 'assistant', content: `Привет, ${clean(user.name, 40) || 'друг'}! Я Ментор ИИ. Помогу выбрать курсы и возможности, объясню тему или построю план. Спрашивай!` },
   ])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)

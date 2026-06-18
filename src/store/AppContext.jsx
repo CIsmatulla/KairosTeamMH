@@ -397,8 +397,8 @@ export function AppProvider({ children }) {
     bootstrapping: isSupabaseConfigured && (!authChecked || (Boolean(session?.user) && !userDataLoaded)),
     guest: local.guest,
     isAdmin,
-    // cloud: only real admins; local-only build: single-user sandbox, admin allowed for the demo
-    canAdmin: isSupabaseConfigured ? isAdmin : true,
+    // cloud: only real DB admins; local dev sandbox: allow only in non-production builds
+    canAdmin: isSupabaseConfigured ? isAdmin : import.meta.env.DEV,
     cloud,
     signIn,
     signUp,
