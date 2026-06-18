@@ -169,12 +169,19 @@ export function AppProvider({ children }) {
   const uid = session?.user?.id
 
   const courses = useMemo(() => {
-    if (isSupabaseConfigured) return cloudCourses ?? seedCourses
+    if (isSupabaseConfigured && cloudCourses?.length) {
+      // Detect encoding corruption (PowerShell UTF-8 mismatch on initial seed)
+      const ok = cloudCourses.every((c) => !/\?{2,}/.test(c.title || ''))
+      if (ok) return cloudCourses
+    }
     return [...local.customCourses, ...seedCourses].filter((c) => !local.removedIds.includes(c.id))
   }, [cloudCourses, local.customCourses, local.removedIds])
 
   const opportunities = useMemo(() => {
-    if (isSupabaseConfigured) return cloudOpps ?? seedOpportunities
+    if (isSupabaseConfigured && cloudOpps?.length) {
+      const ok = cloudOpps.every((o) => !/\?{2,}/.test(o.title || ''))
+      if (ok) return cloudOpps
+    }
     return [...local.customOpportunities, ...seedOpportunities].filter((o) => !local.removedIds.includes(o.id))
   }, [cloudOpps, local.customOpportunities, local.removedIds])
 
